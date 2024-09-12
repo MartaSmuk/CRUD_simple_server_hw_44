@@ -50,7 +50,7 @@ class DatabaseService {
     public getItems(): Promise<{ items: Array<{ id: number; name: string }> }> {
         return new Promise((resolve, reject) => {
             this.db.all(
-                'SELECT * FROM items WHERE name = ?',
+                'SELECT * FROM items WHERE id = ?',
                 [name],
                 (err: Error | null, rows: Array<{ id: number; name: string }>) => {
                     if (err) {
@@ -58,6 +58,23 @@ class DatabaseService {
                         return;
                     }
                     resolve({ items: rows });
+                }
+            );
+        });
+    }
+
+    public getItemById(id: number): Promise<{ id: number; name: string } | null> {
+        return new Promise((resolve, reject) => {
+            this.db.get(
+                'SELECT * FROM items WHERE id = ?',
+                [id],
+                (err: Error | null, row: { id: number; name: string } | undefined) => {
+                    if (err) {
+                        reject(err);
+                        return;
+                    }
+                    // Resolve with the row if found, or null if no row is found
+                    resolve(row || null);
                 }
             );
         });

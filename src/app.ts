@@ -29,6 +29,23 @@ app.get('/items', async (req: Request, res: Response) => {
     }
 });
 
+// Read (SELECT)    return by requested IDs
+// GET item by ID
+app.get('/items/:id', async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params;
+        const item = await databaseService.getItemById(Number(id));
+        
+        if (item) {
+            res.status(200).json(item);
+        } else {
+            res.status(404).json({ message: "Item not found" });
+        }
+    } catch (err: any) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 // Update (UPDATE)      return only one request which was added 
 app.put('/items/:id', async (req: Request, res: Response) => {
