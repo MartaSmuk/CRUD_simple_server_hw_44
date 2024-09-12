@@ -1,0 +1,21 @@
+{
+  "name": "crud_simple_server_hw_44",
+  "version": "1.0.0",
+  "description": "This is a server on Express with CRUD operations",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/app.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "sqlite3": "^5.1.7"
+  }
+}
